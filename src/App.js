@@ -1,25 +1,12 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect } from "react";
 
 function App() {
-  const [todo, setTodo] = useState([]);
-
   useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/todos")
-      .then((res) => setTodo(res.data))
-      .catch((error) => console.error("Error fetching data:", error));
+    fetch("/api/users")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   }, []);
 
-  return (
-    <div>
-      <ul>
-        {todo.map((todo) => (
-          <li key={todo.id}>{todo.title}</li>
-        ))}
-      </ul>
-    </div>
-  );
+  return <div></div>;
 }
-
 export default App;
